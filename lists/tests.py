@@ -10,6 +10,7 @@ from django.test import TestCase
 from lists.views import home_page
 from django.http import HttpRequest
 
+from django.template.loader import render_to_string
 
 
 class HomePageTest(TestCase):
@@ -23,5 +24,12 @@ class HomePageTest(TestCase):
         response = home_page(request)
         self.assertTrue(response.content.startswith(b'<html>'))
         self.assertIn(b'<title>To-Do lists</title>', response.content)
-        self.assertTrue(response.content.endswith(b'</html>'))
+        self.assertTrue(response.content.strip().endswith(b'</html>'))
+
+    def test_home_page_content_compare(self):
+        request = HttpRequest()
+        response = home_page(request)
+        expected_html = render_to_string('home.html')
+        #必须解码
+        self.assertEqual(expected_html, response.content.decode())
 
