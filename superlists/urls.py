@@ -22,4 +22,5 @@ urlpatterns = [
     url('^lists/the-only-list-in-the-world/$', 'lists.views.view_list',
         name = 'view_list'),
     url('^lists/new$', 'lists.views.new_list', name='new_list'),
+    url('^lists/(.+)/$', 'lists.views.view_list', name='view_list'),
 ]
