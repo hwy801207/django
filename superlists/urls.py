@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^$', 'lists.views.home_page', name='home'),
     url('^lists/the-only-list-in-the-world/$', 'lists.views.view_list',
-        name = 'view_list')
+        name = 'view_list'),
+    url('^lists/new$', 'lists.views.new_list', name='new_list'),
 ]
