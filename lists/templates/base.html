@@ -15,9 +15,10 @@
 					<form method="POST" action="{% block form_action %} {% endblock %}">
 
 						{{ form.text }}
-						{% csrf_token %} {% if error %}
+						{% csrf_token %} 
+						{% if error %}
 						<div class="form-group has-error">
-							<span class="help-block"> {{ error }} </span>
+							<div class="help-block"> {{ error }} </div>
 						</div>
 						{% endif %}
 					</form>
