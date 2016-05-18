@@ -13,7 +13,7 @@ from django.template.loader import render_to_string
 
 from lists.models import Item, List
 from lists.views import home_page
-from lists.forms import ItemForm
+from lists.forms import ItemForm, EMPTY_LIST_ERROR
 
 class HomePageTest(TestCase):
 
@@ -109,3 +109,20 @@ class NewListTest(TestCase):
         expected_error = escape("You can't have an empty list item")
 #         self.assertEqual(expected_error, response.content().decode())
         self.assertContains(response, expected_error)
+        
+    def test_validation_errors_are_sent_back_to_home_page_template(self):
+        response = self.client.post('/list/new', data={'text': ''})
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'home.html')
+        
+        
+    def test_validation_errors_are_shown_on_home_page(self):
+        response = self.client.post('/list/new', data={'text': ''})
+        self.assertContains(response, escape(EMPTY_LIST_ERROR))
+        
+    def test_for_invalid_input_passes_form_to_template(self):
+        response = self.client.post('/list/new', data={'text': ''})
+        self.assertIsInstance(response.context['form'], ItemForm)
+        
+        
+        
