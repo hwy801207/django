@@ -103,12 +103,11 @@ class ListViewTest(TestCase):
         self.assertEqual(new_item.text, 'A new list item')
 
     def test_invalid_list_items_arent_saved(self):
-        self.client.post('/lists/new', data={'id_text': ''})
-        self.assertEqual(List.objects.count(), 0)
+        self.post_invalid_input()
         self.assertEqual(Item.objects.count(), 0)
         
     def test_validation_errors_are_sent_back_to_home_page_template(self):
-        response = self.client.post('/lists/new', data = {'text': ''})
+        self.post_invalid_input()
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
         
@@ -117,17 +116,17 @@ class ListViewTest(TestCase):
         self.assertContains(response, expected_error)
         
     def test_validation_errors_are_sent_back_to_home_page_template(self):
-        response = self.client.post('/lists/new', data={'text': ''})
+        response = self.post_invalid_input()
         self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response, 'home.html')
+        self.assertTemplateUsed(response, 'list.html')
         
         
     def test_validation_errors_are_shown_on_home_page(self):
-        response = self.client.post('/lists/new', data={'text': ''})
+        response = self.post_invalid_input()
         self.assertContains(response, escape(EMPTY_LIST_ERROR))
         
     def test_for_invalid_input_passes_form_to_template(self):
-        response = self.client.post('/lists/new', data={'text': ''})
+        response = self.post_invalid_input()
         self.assertIsInstance(response.context['form'], ItemForm)
         
         
