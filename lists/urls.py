@@ -19,5 +19,4 @@ urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     url('^new$', 'lists.views.new_list', name='new_list'),
     url('^(\d+)/$', 'lists.views.view_list', name='view_list'),
-    url('^(\d+)/add_item$', 'lists.views.add_item', name='add_item'),
 ]
