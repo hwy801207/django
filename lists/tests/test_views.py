@@ -11,6 +11,8 @@ from django.http import HttpRequest
 from django.utils.html import escape
 from django.template.loader import render_to_string
 
+from unittest import skip
+
 from lists.models import Item, List
 from lists.views import home_page
 from lists.forms import ItemForm, EMPTY_LIST_ERROR
@@ -137,6 +139,8 @@ class ListViewTest(TestCase):
         self.assertEqual(new_item, Item.objects.first())
         self.assertEqual(new_item.text, "do me")
         self.assertEqual(new_item.list, list_)
-        
-        
+       
+    @skip
+    def test1():
+        pass
         
