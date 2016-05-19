@@ -12,3 +12,4 @@ class Item(models.Model):
     list = models.ForeignKey(List, default=None)
 
 
+
