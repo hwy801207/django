@@ -38,7 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lists',
+    'accounts',
 ]
+
+AUTH_USER_MODEL = 'accounts.ListUser'
+AUTHENTICATION_BACKENDS = (
+        'accounts.authentication.PersonaAuthenticationBackend',
+        )
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

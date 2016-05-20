@@ -22,5 +22,6 @@ urlpatterns = [
 #     url('^lists/new$', 'lists.views.new_list', name='new_list'),
 #     url('^lists/(\d+)/$', 'lists.views.view_list', name='view_list'),
 #     url('^lists/(\d+)/add_item$', 'lists.views.add_item', name='add_item'),
-    url(r'^lists/', include('lists.urls'))
+    url(r'^lists/', include('lists.urls')),
+    url(r'^accounts/', include('accounts.urls')),
 ]
