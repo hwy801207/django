@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from django.conf.global_settings import LOGGING
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -121,3 +122,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
+# config django logging
+LOGGING = {
+           'version':1,
+           'disable_existing_loggers': False,
+           'handlers': {
+                        'console':{
+                                   'level': 'DEBUG',
+                                   'class': 'logging.StreamHandler',
+                                   },
+                        },
+           'loggers': {
+                       'django':{
+                                'handlers': ['console'], 
+                                 }
+                       },
+           'root': {'level': 'INFO'},
+           }
