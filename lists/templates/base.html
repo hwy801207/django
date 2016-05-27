@@ -61,7 +61,7 @@ $(document).ready(function(){
 
         var currentUser = '{{ user.email }}'||null;
 
-        var csrf_token = '{{ csrf_token}}';
+        var csrf_token = '{{ csrf_token }}';
         console.log(currentUser)
 
         navigator.id.watch(
@@ -76,6 +76,13 @@ $(document).ready(function(){
             $.post('/accounts/logout')
             .always(function(){ window.location.reload();});
             });
+        });
+</script>
+
+<script src="/static/accounts.js"></script>
+<script>
+$(document).ready(function(){
+        Superlists.Accounts.initialize(nagigator);
         });
 </script>
 </body>
