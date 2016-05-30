@@ -27,5 +27,7 @@ def persona_login(request):
         login(request, user)
     return HttpResponse('OK')
 
+def persona_logout():
+    pass
 
     

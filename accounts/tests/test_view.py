@@ -19,7 +19,7 @@ class LoginViewTest(TestCase):
         user.backend = ''
         mock_authenticate.return_value = user
         self.client.post('/accounts/login', {'assertion': 'a'})
-        self.assertEqual(self.client.session[SESSION_KEY], user.pk)
+        self.assertEqual(self.client.session[SESSION_KEY], str(user.pk))
         
     @patch('accounts.views.authenticate')
     def test_does_not_get_logged_in_if_authenticate_returns_None(self, mock_authenticate):
