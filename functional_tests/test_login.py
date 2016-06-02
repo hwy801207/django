@@ -25,12 +25,12 @@ class LoginTest(FunctionalTest):
     def wait_to_be_logged_in(self):
         self.wait_for_element_with_id('id_logout')
         navbar = self.browser.find_element_by_css_selector('.navbar')
-        self.assertIn('19130258@qq.com', navbar.text)
+        self.assertIn('aguilera521532@mockmyid.com', navbar.text)
 
     def wait_to_be_logged_out(self):
         self.wait_for_element_with_id('id_login')
         navbar = self.browser.find_element_by_css_selector('.navbar')
-        self.assertNotIn('19130258@qq.com', navbar.text)
+        self.assertNotIn('aguilera521532@mockmyid.com', navbar.text)
 
     def test_login_with_persona(self):
         self.browser.get(self.server_url)
@@ -38,7 +38,7 @@ class LoginTest(FunctionalTest):
 
         self.switch_to_new_window('Mozilla Persona')
 
-        self.browser.find_element_by_id('authentication_email').send_keys('19130258@qq.com')
+        self.browser.find_element_by_id('authentication_email').send_keys('aguilera521532@mockmyid.com')
         self.browser.find_element_by_tag_name('button').click()
 
         self.switch_to_new_window('To-Do')
@@ -48,8 +48,9 @@ class LoginTest(FunctionalTest):
         self.browser.refresh()
         self.wait_to_be_logged_in()
 
-        self.wait_for_element_with_id('id_logout').click()
+        self.browser.find_element_by_id('id_logout').click()
         self.wait_to_be_logged_out()
+
         self.browser.refresh()
         self.wait_to_be_logged_out()
 
